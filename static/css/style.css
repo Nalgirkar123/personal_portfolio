@@ -5,6 +5,8 @@ body {
     background-color: #333383;
 }
 
+
+
 * {
     margin: 0px;
     padding: 0px;
@@ -89,7 +91,7 @@ h4 {
         position: relative;
         width:170%;
         left: -40px;
-        top: -40px;
+        top: -30px;
         background-size: cover;
         border-radius: 84%;
         height: 170%;
@@ -452,4 +454,64 @@ ul li a:hover {
 .live {
     color: #1f1f38;
     background-color: #da7fa8;
+}
+
+
+/* mobile responsive settings */
+
+/* ---- Responsive Styles ---- */
+@media (max-width: 768px) {
+    .home-right img {
+      width: 60%;
+      height: auto;
+    }
+  }
+  
+
+@media screen and (max-width: 768px) {
+    .home-left, .home-right, .about-left, .about-right, .skills-left, .skills-right {
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    .home-left h6, .home-left h4 {
+        font-size: 2.5rem;
+    }
+    
+    .home-left h1 {
+        font-size: 2rem;
+    }
+    
+    .home-right img {
+        max-width: 100%;
+        height: auto;
+        left: 0;
+        top: 0;
+    }
+    
+    .projects-item {
+        width: 90%;
+    }
+    
+    .form {
+        width: 100%;
+    }
+    
+    .nav-col a {
+        padding: 0.5rem;
+    }
+    
+    .checkBtn {
+        display: block;
+    }
+
+    #navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #check:checked ~ ul {
+        display: flex;
+    }
 }
