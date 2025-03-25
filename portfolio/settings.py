@@ -24,6 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'nv)=_h7=(#+dn7hk2#n17v406lzs#2-)l8kepd#y(u2g)g5_%-'
 
 
+ALLOWED_HOSTS = ['.vercel.app', 'personal-portfolio-lilac-mu-36.vercel.app', 'localhost', '127.0.0.1']
+
+
 
 
 
