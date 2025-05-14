@@ -1,22 +1,26 @@
 import os
-import pymysql
 from pathlib import Path
 import environ
+import pymysql
 
-# Initialize environment variables
-env = environ.Env()
+# Initialize environment
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, ''),
+    ALLOWED_HOSTS=(str, 'localhost'),
+    SECURE_SSL_REDIRECT=(bool, False),
+)
 environ.Env.read_env()
 
-# Install MySQLdb
 pymysql.install_as_MySQLdb()
 
-# Build paths
+# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Security
+# Security settings
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env.bool('DEBUG', default=False)
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='localhost').split(',')
+DEBUG = env('DEBUG')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -77,10 +81,10 @@ DATABASES = {
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # Internationalization
@@ -107,13 +111,16 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# Notifications (optional toggle via env later if needed)
-SEND_NOTIFICATION_EMAIL = True
+# SSL & Security (auto handles dev vs prod)
+if DEBUG:
+    SECURE_SSL_REDIRECT = False
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
+else:
+    SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
-# Security
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
 # Whitenoise static files storage
