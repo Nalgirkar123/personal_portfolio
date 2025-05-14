@@ -4,13 +4,10 @@ import environ
 import pymysql
 
 # Initialize environment
-env = environ.Env(
-    DEBUG=(bool, False),
-    SECRET_KEY=(str, ''),
-    ALLOWED_HOSTS=(str, 'localhost'),
-    SECURE_SSL_REDIRECT=(bool, False),
-)
-environ.Env.read_env()
+env = environ.Env()
+environ.Env.read_env('.env')
+
+
 
 pymysql.install_as_MySQLdb()
 
@@ -74,8 +71,8 @@ DATABASES = {
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='3306'),
     }
 }
 
@@ -111,20 +108,19 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# SSL & Security (auto handles dev vs prod)
-if DEBUG:
-    SECURE_SSL_REDIRECT = False
-    CSRF_COOKIE_SECURE = False
-    SESSION_COOKIE_SECURE = False
-else:
-    SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+# CSRF settings
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
-X_FRAME_OPTIONS = 'DENY'
 
-# Whitenoise static files storage
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#static files storage
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+#cache controller
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',  # Cache for 1 day
+}
 
 # Logging (optional)
 LOGGING = {
