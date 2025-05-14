@@ -1,9 +1,23 @@
 {
   "version": 2,
   "builds": [
-    { "src": "portfolio/wsgi.py", "use": "@vercel/python" }
+    {
+      "src": "portfolio/wsgi.py",
+      "use": "@vercel/python"
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "portfolio/wsgi.py" }
-  ]
+    {
+      "src": "/(.*)",
+      "dest": "portfolio/wsgi.py"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "postgresql://portfolio_db_owner:npg_dmB0uIocGYV6@ep-aged-dust-a1b6mztb-pooler.ap-southeast-1.aws.neon.tech/portfolio_db?sslmode=require",
+    "SECRET_KEY": "+k61f*03ds1jd05teo)x16dz((ur!_*brga-984lyw(5ce8$l",
+    "EMAIL_HOST_USER": "omkarnalgirkar17@gmail.com",
+    "EMAIL_HOST_PASSWORD": "Google17@5689",
+    "DEBUG": "false",
+    "ALLOWED_HOSTS": ".vercel.app,personal-portfolio-eight-sigma-65.vercel.app,localhost,127.0.0.1"
+  }
 }
