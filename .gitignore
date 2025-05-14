@@ -1,5 +1,32 @@
+# Python-related
 *.pyc
 __pycache__/
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# Django-related
+*.log
+*.pot
+*.pyc
+__pycache__/
+*.sqlite3
 db.sqlite3
+
+# Environment variables
 .env
-staticfiles/
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Static and Media files
+/static/
+media/
+
+# Vercel deployment
+.vercel/
