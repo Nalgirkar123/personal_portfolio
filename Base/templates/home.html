@@ -1,214 +1,216 @@
-{% load static%}
-<!DOCTYPE html>
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>omkar_portfolio </title>
-    <link rel="icon" type="image/x-icon" href="./Images/favicon.jpeg">
-    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <title>Omkar Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpeg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     
-    
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
-<body>`
-    
-    <!-- Navbar Section -->
-    <nav id="navbar" class="flex s-around bg-color">
-        <div class="left-nav">
-            <h2 class="t-white">Portfolio</h2>
-        </div>
-        <div class="right-nav">
-            <ul class="flex">
-                <li><a href="#home" class="t-white roboto">Home <i class="fa-solid fa-house"></i></a></li>
-                <li><a href="#about" class="t-white roboto">About Me <i class="fa-solid fa-user"></i></a></li>
-                <li><a href="#skills" class="t-white roboto">Skills <i class="fa-solid fa-code"></i></a></li>
-                <li><a href="#Projects" class="t-white roboto">Projects <i class="fas fa-project-diagram"></i></a></li>
-                <li><a href="#Contact" class="t-white roboto">Contact <i class="fa-solid fa-rocket"></i></a></li>
+
+<body>
+
+<!-- Message Display Area -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+<!-- Header -->
+<header id="header">
+    <div class="container">
+        <div class="logo">Omkar.dev</div>
+        <nav id="navbar" class="nav">
+            <ul>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+        </nav>
+        <div id="menu-toggle" class="menu-toggle">
+            <i class="fas fa-bars"></i>
         </div>
-    </nav>
+    </div>
+</header>
 
-        
 
-    <!-- Home Section -->
+    <!-- Home -->
     <section id="home" class="flex s-around sw-80 m-auto">
         <div class="home-left flex items-center">
             <div class="home-content">
                 <h6 class="poppinss">Hi, I'm</h6>
                 <h1 class="t-white">Omkar Nalgirkar</h1>
                 <h4 class="poppinss">Python Developer</h4>
-                <a href="{% static 'pdf/Resume.pdf' %}"  target="_blank">
-                    <button class="btn poppins">Resume</button></a>
-                    
-                <a class="btn live poppins" id="hireme" href="mailto:omkarnalgirkar17@gmail.com"
-                    target="_blank">Let's Talk</a>
+                <a href="{% static 'pdf/Resume.pdf' %}" target="_blank" class="btn poppins">Resume</a>
+                <a href="mailto:omkarnalgirkar17@gmail.com" target="_blank" class="btn live poppins">Let's Talk</a>
             </div>
         </div>
         <div class="home-right flex s-center items-center">
             <div class="circle flex s-center items-center" id="mainImage">
-               
-                <img src="{% static 'images/123.jpg'%}" alt="">
+                <img src="{% static 'images/123.jpg' %}" alt="Omkar Nalgirkar">
             </div>
-
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Me -->
     <section id="about">
         <h1 class="t-center my-2 t-white f-2">About Me</h1>
-        <div class="about-container flex s-around ">
-            <div class=" about-left flex s-center items-center">
-                <!-- Here in src replade the given link with your secondary image link -->
-                <img src="{%static 'images/abtme.jpg'%}" alt="" style="width: 50%;">
-            </div>
-
-            <div class="about-right flex">
-                <div class="about-content">
-                    <h1 class="t-white m-b-1 poppins">Omkar Nalgirkar</h1>
-                    <p class="t-white poppins">My name is Omkar Nalgirkar.I am Omkar Nalgirkar, a dedicated Python Developer with a strong passion for building scalable and efficient software solutions. I hold a Bachelor's degree in Computer Applications (BCA), where I excelled academically, achieving a top 3 rank in my class. Following my undergraduate success, I pursued a Master's degree in Computer Applications (MCA), further strengthening my technical skills and understanding of complex software systems..</p>
-                    <p class="t-white poppins">My passion lies in Python and Django, and I enjoy developing dynamic web applications and backend solutions. Additionally, I have a keen interest in data science and aspire to apply machine learning and AI concepts in future projects. I am also constantly expanding my knowledge in Artificial Intelligence and its real-world applications.</p>
-                    <a class="btn " id="hireme"
-                        href="https://www.linkedin.com/in/omkar-nalgirkar-35b13a234/">Hire Me</a>
-                </div>
+        <div class="about-container flex s-center items-center">
+            <div class="about-glow-avatar"><span>👨‍💻</span></div>
+            <div class="about-content">
+                <p class="t-white">
+                    Hello! I'm Omkar Nalgirkar, a passionate Full Stack Python Developer and Django Enthusiast.
+                    I love building modern web apps, exploring APIs, and delivering impactful solutions.
+                </p>
+                <a href="#skills" class="btn-glow">View My Skills</a>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills -->
     <section id="skills">
         <h1 class="t-center my-2 t-white f-2">Skills</h1>
-        <div class="services-container flex s-around h-50">
-        <div class=" skills-left flex s-center items-center">
-            <img src="{%static 'images/skills.jpg'%}" alt="">
-        </div>
-
-        <div class="skills-right flex items-center">
-            <div class="skillss-container">
-                <div class="java bar p-relative"><span class="bar-content left t-white"> Python</span><span
-                        class="bar-content right-skills t-white">90%</span></div>
-                <div class="html bar p-relative"><span class="bar-content left t-white">Django</span><span
-                        class="bar-content right-skills t-white">90%</span></div>
-                <div class="css bar p-relative"><span class="bar-content left t-white">MySQL</span><span
-                        class="bar-content right-skills t-white">80%</span></div>
-                <div class="js bar p-relative"><span class="bar-content left t-white">Data Visulization</span><span
-                        class="bar-content right-skills t-white">60%</span></div>
-                <div class="python bar p-relative"><span class="bar-content left t-white">PHP</span><span
-                        class="bar-content right-skills t-white">50%</span></div>
-                <div class="mysql bar p-relative"><span class="bar-content left t-white">GitHub/Git</span><span
-                        class="bar-content right-skills t-white">40%</span></div>        
+        <div class="skills-container">
+            <div class="skills-left">
+                <img src="{% static 'images/skills.jpg' %}" alt="Skills Illustration" class="skills-illustration">
             </div>
-        </div>
+            <div class="skills-right">
+                <div class="skills-bars-container">
+                    <div class="skill" data-tooltip="Python - 90%">
+                        <div class="skill-name">Python</div>
+                        <div class="skill-bar"><div class="skill-fill" style="--target-width: 90%;"></div></div>
+                    </div>
+                    <div class="skill" data-tooltip="Django - 90%">
+                        <div class="skill-name">Django</div>
+                        <div class="skill-bar"><div class="skill-fill" style="--target-width: 90%;"></div></div>
+                    </div>
+                    <div class="skill" data-tooltip="MySQL - 80%">
+                        <div class="skill-name">MySQL</div>
+                        <div class="skill-bar"><div class="skill-fill" style="--target-width: 80%;"></div></div>
+                    </div>
+                    <div class="skill" data-tooltip="Data Visualization - 60%">
+                        <div class="skill-name">Data Visualization</div>
+                        <div class="skill-bar"><div class="skill-fill" style="--target-width: 60%;"></div></div>
+                    </div>
+                    <div class="skill" data-tooltip="PHP - 50%">
+                        <div class="skill-name">PHP</div>
+                        <div class="skill-bar"><div class="skill-fill" style="--target-width: 50%;"></div></div>
+                    </div>
+                    <div class="skill" data-tooltip="GitHub/Git - 40%">
+                        <div class="skill-name">GitHub/Git</div>
+                        <div class="skill-bar"><div class="skill-fill" style="--target-width: 40%;"></div></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Projects -->
+    <section id="projects">
+        <h1 class="t-center my-2 t-white f-2">My Projects</h1>
+        <div class="projects-container">
+            <div class="project-card">
+                <img src="{% static 'images/project1.png' %}" alt="Taskly - To-Do App">
+                <h3>Taskly - To-Do App</h3>
+                <p>Advanced task manager using Django, with status updates and dashboards.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <img src="{% static 'images/project2.jpg' %}" alt="SkyCast - Weather App">
+                <h3>SkyCast - Weather App</h3>
+                <p>Modern weather forecasting app using Django and OpenWeather API.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <img src="{% static 'images/project3.jpg' %}" alt="Resume Parser">
+                <h3>Resume Parser</h3>
+                <p>Python-based resume parser with GUI and NLP using spaCy.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <img src="{% static 'images/project4.jpg' %}" alt="Portfolio Website">
+                <h3>Portfolio Website</h3>
+                <p>Personal responsive portfolio using HTML, CSS, Django templating.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h1 class="t-center my-2 f-2 contact-title" data-aos="fade-up">Contact Me</h1>
+        <div class="contact-container flex s-around items-center">
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Let's Connect</h2>
+                <p><i class="fas fa-envelope"></i> omkarnalgirkar17@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91 7447875689</p>
+                <p><i class="fas fa-map-marker-alt"></i> Pune, India</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <form class="contact-form" data-aos="fade-left">
+                <div class="form-group">
+                    <input type="text" name="name" required>
+                    <label>Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" required></textarea>
+                    <label>Message</label>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- footer section -->
+    <footer id="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <h2>Omkar Nalgirkar</h2>
+            <p>Crafting Web Experiences with Passion 🚀</p>
+        </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p class="footer-credit">© 2025 Omkar Nalgirkar. All Rights Reserved.</p>
+    </div>
+</footer>
     
 
-    <!-- Projects Section -->
-    <section id="Projects">
-        <h1 class=" t-center my-2 t-white f-2">Projects</h1>
-        <div class="projects-container flex s-center">
-            <div class="projects-item flex f-col s-center items-center">
-               
-                <h1 class="t-white poppins">AI Resume Analyzer</h1>
-                <p class="t-white poppins"> Developed an AI-powered resume analysis tool that extracts relevant information using Natural Language Processing.
-                    It provides feedback based on job descriptions and offers optimization suggestions. Built with Python, Flask, and Machine Learning libraries.</p>
-                <div class="buttons flex s-around">
-                    <a href=""
-                        target="_blanks" class="btn mx-1 m-top">GitHub</a>
-                    <a href="" target="_blanks" class="btn m-top live">Live
-                        Link</a>
-                </div>
-            </div>
-            <div class="projects-item flex f-col s-center items-center">
-               
-                <h1 class="t-white poppins">Everyday Eats</h1>
-                <p class="t-white poppins">Built a food delivery web application using PHP and MySQL. The platform allows users to explore restaurant menus, place orders, and track their deliveries.
-                    Integrated secure payment gateways and designed an intuitive admin panel for restaurant management. Ensured a responsive UI for both mobile and desktop users.</p>
-                <div class="buttons flex s-around">
-                    <a href="" target="_blanks"
-                        class="btn mx-1 m-top">GitHub</a>
-                    <a href="#" target="_blanks" class="btn m-top live">Live
-                        Link</a>
-                </div>
-            </div>
-            
-            <div class="projects-item flex f-col s-center items-center">
-               
-                <h1 class="t-white poppins">Airline Reservation System</h1>
-                <p class="t-white poppins">Created a console-based airline booking system that offers seamless ticket management for customers and administrative control for airlines. Features include user authentication, booking management, flight search, and cancellations.
-                    Designed with Python and MySQL, ensuring user-friendly interface. Implemented input validation for enhanced user experience.</p>
-                <div class="buttons flex s-around">
-                    <a href="" target="_blanks"
-                        class="btn mx-1 m-top">GitHub</a>
-                    <a href="#" target="_blanks" class="btn m-top live">Live
-                        Link</a>
-                </div>
-            </div>
-           
-         </div>
 
-        </div>
-    </section>
+    <!-- AOS CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 
-    <!-- Contact Me Section -->
-    <section id="Contact" class="m-b-1">
-        <h1 class=" t-center my-2 t-white f-2">Contact Me</h1>
-        <div class="contact-container flex s-around items-centers">
-            <div class="form" id="contactForm">
-                <form method="post" > 
-                    {% csrf_token %}
-                    <div class="name form-div">
-                        <input type="text" name="name" id="name" class="poppins" placeholder="Enter Your Name">
-                    </div>
+</body>
 
-                    <div class="email form-div">
-                        <input type="email" name="email" id="" class="poppins" placeholder="Enter Your Email"
-                            required>
-                    </div>
-
-                    <div class="phone form-div">
-                        <input type="phone" name="number" id="" class="poppins" placeholder="Enter Your Phone"
-                            required>
-                    </div>
-                    
-                    <div class="textarea form-div">
-                        <textarea name="content" id="textarea" cols="30" rows="10" class="poppins"
-                            placeholder="Enter Messages"></textarea>
-                    </div>
-                    <button type="submit" class="btn poppins" id="submit">Send</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer id="footer">
-        <ul class="flex s-center w-80 m-auto my-2 res">
-            <li><a href="#home" class="poppinss">Home</a></li>
-            <li><a href="#about" class="poppinss">About</a></li>
-            <li><a href="#skills" class="poppinss">Skills</a></li>
-            <li><a href="#projects" class="poppinss">Projects</a></li>
-            <li><a href="#portfolio" class="poppinss">Portfolio</a></li>
-        </ul>
-        <ul class="flex s-center w-80 font-awesome ">
-            <a href="https://www.linkedin.com/in/omkar-nalgirkar-35b13a234/" target="_blank">
-                <li><i class="fa-brands fa-linkedin-in"></i></li>
-            </a>
-            <a href="https://github.com/Nalgirkar123" target="_blank">
-                <li><i class="fa-brands fa-github"></i></li>
-            </a>
-                <a href="https://www.instagram.com/_omkar.nalgirkar_/" target="_blank">
-                    <li><i class="fa-brands fa-instagram"></i></li>
-            </a>
-            
-        </ul>
-        <p class="t-center my-2 poppins">&copy; All Rights Reserved - <span class="cpy-white poppins">Error By Night 
-                </span></p>
-
-    </footer>
-     
-</body> 
 </html>
