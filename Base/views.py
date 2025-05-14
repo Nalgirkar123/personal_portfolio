@@ -6,44 +6,37 @@ from Base.models import Contact
 
 def contact(request):
     if request.method == "POST":
-        print('POST request received')
-
-        # Extract form data
         name = request.POST.get('name')
         email = request.POST.get('email')
-        message = request.POST.get('message')
+        message_content = request.POST.get('message')
 
-        # Basic form validation
-        if not name or len(name) < 2 or len(name) > 30:
-            messages.error(request, 'Length of name should be greater than 2 and less than 30 characters')
+        if len(name) < 2 or len(name) > 30:
+            messages.error(request, 'Length of name should be between 2 and 30 characters.')
             return render(request, 'home.html')
 
-        if not email or len(email) < 5 or len(email) > 100:
-            messages.error(request, 'Invalid email address')
+        if len(email) < 5 or len(email) > 100:
+            messages.error(request, 'Invalid email address.')
             return render(request, 'home.html')
 
-        if not message or len(message.strip()) == 0:
-            messages.error(request, 'Message cannot be empty')
-            return render(request, 'home.html')
-
-        # Save to the database
-        contact_instance = Contact(name=name, email=email, message=message)
+        # Save to database
+        contact_instance = Contact(name=name, email=email, content=message_content)
         contact_instance.save()
         messages.success(request, 'Thank you for contacting me! Your message has been saved.')
 
-        # Send email notification to yourself
-        try:
-            send_mail(
-                'New Contact Form Submission',
-                f"Name: {name}\nEmail: {email}\nMessage: {message}",
-                settings.EMAIL_HOST_USER,
-                [settings.EMAIL_HOST_USER],
-                fail_silently=False,
-            )
-            print('Email sent successfully')
-        except Exception as e:
-            print(f'Error sending email: {e}')
+        # Send email notification
+        if getattr(settings, 'SEND_NOTIFICATION_EMAIL', False):
+            try:
+                send_mail(
+                    'New Contact Form Submission',
+                    f"Name: {name}\nEmail: {email}\nMessage: {message_content}",
+                    settings.EMAIL_HOST_USER,
+                    [settings.EMAIL_HOST_USER],
+                    fail_silently=False,
+                )
+                print('✅ Email sent successfully')
+            except Exception as e:
+                print(f"❌ Failed to send email: {e}")
 
-        return redirect('home')  # Redirect to home after successful submission
+        return redirect('home')
 
     return render(request, 'home.html')
